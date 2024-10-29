@@ -31,3 +31,4 @@ Se aplicaran los patrones de diseño actualmente reconocidos en las arquitecturas
 Esto permitira el desarrollo de una aplicacion que respete los principios SOLID  para el desarrollo de arquitecturas de software 
 
 
+
