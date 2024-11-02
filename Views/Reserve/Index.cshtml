@@ -1,0 +1,50 @@
+﻿@model ReserveSeek
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewData["Title"] = "Buscar Horarios Disponibles";
+}
+<Section class="flex min-h-dvh w-full flex-col items-center">
+    <h2 class="w-full bg-gray-900 p-4 text-center text-6xl font-bold text-gray-50">Buscar Horarios Disponibles</h2>
+    <form class="flex h-full w-2/3 flex-col items-center justify-center rounded-md py-4" asp-controller="ClassRoom" asp-action="Edit" method="POST">
+        <div asp-validation-summary="ModelOnly" class="text-red-500"></div>
+        <div class="flex w-2/3 flex-col self-center">
+            <label asp-for="Date"></label>
+            <input asp-for="Date" type="date" class="border-2 mx-1 rounded-md border-gray-900 p-1" />
+            <span asp-validation-for="Date" class="text-red-600"></span>
+        </div>
+        <div class="flex w-2/3 flex-col self-center">
+            <label asp-for="EndDate"></label>
+            <input asp-for="EndDate" type="date" class="border-2 mx-1 rounded-md border-gray-900 p-1" />
+            <span asp-validation-for="EndDate" class="text-red-600"></span>
+        </div>
+        <div class="flex w-2/3 flex-col self-center">
+            <label asp-for="Students"></label>
+            <input type="number" asp-for="Students" class="border-2 mx-1 rounded-md border-gray-900 p-1" />
+            <span asp-validation-for="Students" class="text-red-600"></span>
+        </div>
+        <div class="flex w-2/3 flex-col self-center">
+            <label asp-for="Hour"></label>
+            <input asp-for="Hour" type="number" class="border-2 mx-1 rounded-md border-gray-900 p-1" />
+            <span asp-validation-for="Hour" class="text-red-600"></span>
+        </div>
+        <div class="flex w-2/3 flex-col self-center">
+            <label asp-for="TotalHours"></label>
+            <input type="number" asp-for="TotalHours" class="border-2 mx-1 rounded-md border-gray-900 p-1" />
+            <span asp-validation-for="TotalHours" class="text-red-600"></span>
+        </div>
+        <div class="flex w-2/3 justify-between">
+            <button type="submit" class="mt-4 w-48 rounded-md border border-transparent bg-gradient-to-tr from-blue-800 to-blue-700 px-4 py-2 text-center text-sm text-white shadow-md transition-all hover:shadow-lg hover:bg-slate-700 focus:bg-slate-700 focus:shadow-none active:bg-slate-700 active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none">
+                <i class="fa fa-search" aria-hidden="true"></i>  Ver Disponibilidad
+            </button>
+            <a asp-action="Index" asp-controller="ClassRoom" class="mt-4 w-48 rounded-md border border-transparent bg-gradient-to-tr from-green-800 to-green-700 px-4 py-2 text-center text-sm text-white shadow-md transition-all hover:shadow-lg hover:bg-slate-700 focus:bg-slate-700 focus:shadow-none active:bg-slate-700 active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none">
+                Volver
+            </a>
+
+        </div>
+
+
+    </form>
+
+</Section>

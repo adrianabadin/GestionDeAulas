@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using static GestionDeAulas.Models.User;
 
 namespace GestionDeAulas.Models
 {
