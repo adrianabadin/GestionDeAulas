@@ -1,4 +1,5 @@
 ﻿using GestionDeAulas.Models;
+using GestionDeAulas.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
@@ -9,10 +10,11 @@ namespace GestionDeAulas.Controllers
         UserManager<User> UserManager;
         private IPasswordHasher<User> _hasher;
         private RoleManager<IdentityRole> _role;
-        public AccountController(UserManager<User> _userManager,IPasswordHasher<User> hasher, RoleManager<IdentityRole> role)
+        private UsersService _usersService;
+        public AccountController(UserManager<User> _userManager,IPasswordHasher<User> hasher, RoleManager<IdentityRole> role,UsersService usersService)
 
 
-        {
+        {this._usersService = usersService;
             this.UserManager = _userManager;
             this._hasher = hasher;
             _role = role;
@@ -42,7 +44,14 @@ namespace GestionDeAulas.Controllers
         public IActionResult Edit() {
             return View();
         }
-        public IActionResult Listar() { return View(); }
+        public async Task< IActionResult> Index() {
+            var response = await _usersService.List();
+            foreach(var usuario in response)
+            {
+                var respuesta = await UserManager.GetRolesAsync(usuario);
+                usuario.Role = string.Join(",",respuesta);
+            }
+            return View(response); }
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> CreateRole(string role) {

@@ -41,7 +41,7 @@ namespace GestionDeAulas.Models
         [Compare("Password", ErrorMessage = "Las contraseñas deben coincidir")]
         
         public string Password2 { get; set; } = string.Empty;
-        [DisplayName("Role")]
+        [DisplayName("Roles del Usuario")]
         [NotMapped]
         public string? Role { get; set; } = string.Empty;
 
@@ -61,7 +61,9 @@ namespace GestionDeAulas.Models
         [Required(ErrorMessage = "El campo telefono es obligatorio")]
             [Phone(ErrorMessage = "Debe ser un telefono valido")]
             override public string? PhoneNumber { get; set; }
-
+        [DefaultValue(true)]
+        [DisplayName("Estado")]
+        public bool IsActive { get; set; } = true; 
         }
     }
 

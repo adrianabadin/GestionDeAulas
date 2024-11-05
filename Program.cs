@@ -1,4 +1,5 @@
 using GestionDeAulas.Models;
+using GestionDeAulas.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
@@ -35,6 +36,10 @@ builder.Services.ConfigureApplicationCookie(options => {
     options.Cookie.SameSite = SameSiteMode.None;
 });
 builder.Services.AddIdentity<User,IdentityRole>().AddEntityFrameworkStores<AppDbContext>();
+/*
+ SERVICIOS
+ */
+builder.Services.AddScoped<UsersService>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

@@ -9,7 +9,7 @@ namespace GestionDeAulas.Models
     {
         [Key]
         public Guid Id { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Debes ingresar un nombre para la carrera")]
         [DisplayName("Carrera")]
         public string Name { get; set; } = string.Empty;
         [DisplayName("Descripcion")]
@@ -18,7 +18,7 @@ namespace GestionDeAulas.Models
         public string StartingYear { get; set; } = string.Empty;
         [ForeignKey("Institutions")]
         [NotNull]
-        [Required]
+        [Required(ErrorMessage = "Debes ingresar una institucion para la carrera")]
         [DisplayName("Institucion")]
         public Guid InstitutionId { get; set; }
         public Institutions Institution { get; set; } = new Institutions();

@@ -12,15 +12,16 @@
 
 </head>
 <body>
+
     <header class="m-1 rounded-md p-2 shadow-md shadow-gray-500">
-        <div class="m-4 flex flex-row justify-between">
-            <div class="flex flex-col items-center justify-center">
-            <h1 class="text-8xl font-bold text-green-600">CURS</h1>
-            <h2 class="text-6xl font-bold text-red-600">Saladillo</h2>
-            </div>
+        <div class="m-4 flex flex-row items-center justify-between align-middle">
+            <a asp-controller="Home" asp-action="Index" class="my-auto flex flex-col items-center justify-center">
+                <h1 class="h-fit p-1 text-6xl font-bold text-green-600">CURS</h1>
+                <h2 class="h-fit p-1 text-4xl font-bold text-red-600">Gestion de Aulas</h2>
+            </a>
             <div>
-                <a href="/account/signin" class="cursor-pointer text-blue-800 no-underline">Ingresar</a>
-                <a href="/Account/Register" class="pointer-events-auto text-blue-800 no-underline">Registrarse</a>
+                <a asp-controller="Account" asp-action="Login" class="cursor-pointer text-blue-800 no-underline">Ingresar</a>
+                <a asp-controller="Account" asp-action="Register" class="pointer-events-auto text-blue-800 no-underline">Registrarse</a>
             </div>
         </div>
     </header>
@@ -30,11 +31,6 @@
         </main>
     
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2024 - GestionDeAulas - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-        </div>
-    </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
 
     <script src="~/js/site.js" asp-append-version="true"></script>

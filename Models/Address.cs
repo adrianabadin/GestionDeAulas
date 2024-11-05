@@ -8,14 +8,14 @@ namespace GestionDeAulas.Models
         [Key]
         [Required]
         public Guid Id { get; set; }
-        [Required]
+        [Required(ErrorMessage = "La Calle es Obligatoria")]
         public string StreetName { get; set; } = string.Empty;
-        [Required]
+        
         public Departments Department { get; set; } = new Departments();
-        [Required]
+        [Required(ErrorMessage = "La Localidad des Obligatoria")]
         [ForeignKey("Departments")]
         public Guid ZipCode { get; set; }
-        [Required]
+        [Required(ErrorMessage = "La altura es Obligatoria")]
         public int Number { get; set; }
     }
 }

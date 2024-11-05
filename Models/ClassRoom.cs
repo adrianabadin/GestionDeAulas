@@ -22,14 +22,14 @@ namespace GestionDeAulas.Models
         [DefaultValue("Sin Descripcion")]
         [DisplayName("Observaciones")]
         public string? Description { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Debes ingresar el numero de aula")]
         [IsNumber]
         [DisplayName("Numero de Aula")]
         [Key]
         public string RoomNumber {  get; set; } = string.Empty;
-        [Range(1,300)]
-        
-        [Required]
+        [Range(1,99,ErrorMessage ="El numero de aula debe ir entre el 1 y el 99")]
+
+        [Required(ErrorMessage = "Debes ingresar la capacidad maxima del aula")]
         [DisplayName("Capacidad Maxima")]
         public int Seats {  get; set; }
         [DefaultValue(true)]

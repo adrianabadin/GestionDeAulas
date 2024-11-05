@@ -8,9 +8,9 @@ namespace GestionDeAulas.Models
     {
         [Key]
         public Guid Id { get; set; }
-        [Required]
+        [Required(ErrorMessage = "La materia debe tener un nombre")]
         public string Name { get; set; } = string.Empty;
-        [Required]
+        [Required(ErrorMessage = "La materia debe tener una descripcion")]
         public string Description { get; set; }= string.Empty;
         [ForeignKey("Courses")]
         [Required(ErrorMessage ="Debes Seleccionar una Carrera")]
@@ -21,7 +21,7 @@ namespace GestionDeAulas.Models
         [Required(ErrorMessage = "Debes Seleccionar un Docente")]
         [DisplayName("Docente")]
 
-        public Guid UserId { get; set; }
+        public string UserId { get; set; }
         public User User { get; set; } = new User();
         [DefaultValue(true)]
         public bool IsActive { get; set; } = true;

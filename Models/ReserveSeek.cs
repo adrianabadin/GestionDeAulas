@@ -17,7 +17,7 @@ namespace GestionDeAulas.Models
         [Required( ErrorMessage ="Debes definir el numero de horas de la reserva")]
         [DisplayName("Horas de la reserva")]
         public string TotalHours { get; set; } = string.Empty;
-        [Required]
+        [Required(ErrorMessage = "Debes definir la fecha de fin de reserva")]
         [DisplayName("Fecha de Fin de Reserva")]
         public DateOnly EndDate {  get; set; }
     }

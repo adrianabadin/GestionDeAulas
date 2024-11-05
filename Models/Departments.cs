@@ -5,9 +5,9 @@ namespace GestionDeAulas.Models
     public class Departments
     {
         [Key]
-        [Required]
+        [Required(ErrorMessage = "Debes ingresar un codigo postal")]
         public string ZipCode { get; set; } = string.Empty;
-        [Required]
+        [Required(ErrorMessage = "Debes ingresar el nombre de la localidad")]
         public string Description { get; set; } = string.Empty;
 
     }
