@@ -1,4 +1,4 @@
-﻿@model Classes
+﻿@model GestionDeAulas.Models.ViewModels.Classes.ClassessCreateVM
 @*
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
@@ -20,14 +20,37 @@
         <div class="flex w-2/3 flex-col self-center">
             <label asp-for="CourseId"></label>
             <select asp-for="CourseId" class="border-2 mx-1 rounded-md border-gray-900 p-1">
-                <option value="fnewfnwefef">Tecnicatura Superior en Programacion</option>
+                @{
+                    if (Model.CoursesList.Count() > 0)
+                    {
+                        foreach (var carrera in Model.CoursesList)
+                        {
+                            
+                        <option value="@carrera.Id">@carrera.Name</option>
+                        }
+                    }
+                    else {
+                        <option>No hay Carreras cargadas...</option>
+                    }
+                }
             </select>
             <span asp-validation-for="CourseId" class="text-red-600"></span>
         </div>
         <div class="flex w-2/3 flex-col self-center">
             <label asp-for="UserId"></label>
             <select asp-for="UserId" class="border-2 mx-1 rounded-md border-gray-900 p-1">
-                <option value="fnewfnwefef">Yamila Artigas</option>
+                @{
+                    if (Model.TeachersList.Count() > 0)
+                    {
+                        foreach (var docente in Model.TeachersList)
+                        {
+                        <option value="@docente.Id">@docente.Name</option>    
+                        }    
+                    }
+                    else {
+                        <option>No hay docentes cargados...</option>
+                    }
+                    }
             </select>
             <span asp-validation-for="UserId" class="text-red-600"></span>
         </div>

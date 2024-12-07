@@ -1,4 +1,4 @@
-﻿@model User
+﻿@model GestionDeAulas.Models.ViewModels.Account.RegisterVM
 @*
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
@@ -30,9 +30,9 @@
             <span asp-validation-for="EmployeeCode" class="text-red-600"></span>
         </div>
         <div class="flex w-2/3 flex-col self-center">
-            <label asp-for="Email"></label>
-            <input asp-for="Email" class="border-2 mx-1 rounded-md border-gray-900 p-1" />
-            <span asp-validation-for="Email" class="text-red-600"></span>
+            <label asp-for="UserName"></label>
+            <input asp-for="UserName" class="border-2 mx-1 rounded-md border-gray-900 p-1" />
+            <span asp-validation-for="UserName" class="text-red-600"></span>
         </div>
         <div class="flex w-2/3 flex-col self-center">
             <label asp-for="PhoneNumber"></label>
@@ -41,22 +41,32 @@
         </div>
         <div class="flex w-2/3 flex-col self-center">
             <label asp-for="Role">Rol</label>
-            <select asp-for="Role" class="border-2 mx-1 rounded-md border-gray-900 p-1">
-                <option value="ADMINISTRADOR">Administrador</option>
-                <option value="DOCENTE">Docente</option>
-                <option value="ALUMNO">Alumno</option>
-            </select>
+            <div class="border-2 mx-1 flex justify-around rounded-md border-gray-900 p-1">
+            <div class="flex">
+                <label  for="admin" class="w-fit pr-4">Administrador</label>
+            <input type="checkbox" class="w-fit" id="admin" value="Administrador" name="role"/>
+                </div>
+                <div class="flex">
+            <label for="teach" class="w-fit pr-4">Docente</label>
+            <input type="checkbox" id="teach" value="DOCENTE" name="role" />
+                </div>
+                <div class="flex">
+            <label for="student" class="w-fit pr-4">Alumno</label>
+            <input type="checkbox" id="student" value="ALUMNO" name="role" />
+                </div>
+            </div>
+            
         </div>
 
         <div class="flex w-2/3 items-start justify-start self-center align-top">
             <div class="flex w-1/2 flex-col items-start pe-1">
-                <label asp-for="Password"></label>
-                <input asp-for="Password" class="border-2 w-full rounded-xl border-blue-900" />
+                <label asp-for="Password" required="El campo clave es obligatorio"></label>
+                <input asp-for="Password" required="El campo clave es obligatorio" class="border-2 mx-1 w-full rounded-md border-gray-900 p-1" />
                 <span   asp-validation-for="Password" class="text-red-600"></span>
             </div>
             <div class="ps- flex w-1/2 flex-col items-start">
                 <label asp-for="Password2"></label>
-                <input asp-for="Password2" class="border-2 w-full rounded-xl border-blue-900" />
+                <input asp-for="Password2" class="border-2 mx-1 w-full rounded-md border-gray-900 p-1" />
                 <span asp-validation-for="Password2" class="text-red-600"></span>
             </div>
         </div>

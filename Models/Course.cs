@@ -1,14 +1,15 @@
-﻿using System.ComponentModel;
+﻿using GestionDeAulas.Models.IModel;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Diagnostics.CodeAnalysis;
 
 namespace GestionDeAulas.Models
 {
-    public class Course
+    public class Course :IActivable
     {
         [Key]
-        public Guid Id { get; set; }
+        public string Id { get; set; } = Guid.NewGuid().ToString();
         [Required(ErrorMessage = "Debes ingresar un nombre para la carrera")]
         [DisplayName("Carrera")]
         public string Name { get; set; } = string.Empty;
@@ -20,8 +21,8 @@ namespace GestionDeAulas.Models
         [NotNull]
         [Required(ErrorMessage = "Debes ingresar una institucion para la carrera")]
         [DisplayName("Institucion")]
-        public Guid InstitutionId { get; set; }
-        public Institutions Institution { get; set; } = new Institutions();
+        public string InstitutionId { get; set; } = string.Empty;
+        public virtual Institutions? Institution { get; set; } 
         [DefaultValue(true)]
         public bool? IsActive { get; set; } = true;
         

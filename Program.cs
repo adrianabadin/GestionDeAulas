@@ -1,4 +1,6 @@
 using GestionDeAulas.Models;
+using GestionDeAulas.Repository;
+using GestionDeAulas.Repository.IRepository;
 using GestionDeAulas.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -40,6 +42,7 @@ builder.Services.AddIdentity<User,IdentityRole>().AddEntityFrameworkStores<AppDb
  SERVICIOS
  */
 builder.Services.AddScoped<UsersService>();
+builder.Services.AddScoped<UnidadContenedora>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

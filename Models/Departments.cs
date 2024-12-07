@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace GestionDeAulas.Models
 {
@@ -6,7 +7,8 @@ namespace GestionDeAulas.Models
     {
         [Key]
         [Required(ErrorMessage = "Debes ingresar un codigo postal")]
-        public string ZipCode { get; set; } = string.Empty;
+        [Column("ZipCode")]
+        public string Id { get; set; } = string.Empty;
         [Required(ErrorMessage = "Debes ingresar el nombre de la localidad")]
         public string Description { get; set; } = string.Empty;
 

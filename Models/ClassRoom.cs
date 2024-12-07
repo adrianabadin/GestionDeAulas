@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace GestionDeAulas.Models
 {
@@ -16,6 +17,8 @@ namespace GestionDeAulas.Models
     }
     public class ClassRoom
     {
+        public virtual ICollection<Reserve>? Reserves { get; set; }
+
         [DefaultValue("Sin Asignar")]
         [DisplayName("Nombre del Aula")]
         public string? Name { get; set; }
@@ -26,7 +29,8 @@ namespace GestionDeAulas.Models
         [IsNumber]
         [DisplayName("Numero de Aula")]
         [Key]
-        public string RoomNumber {  get; set; } = string.Empty;
+        [Column("RoomNumber")]
+        public string Id {  get; set; } = string.Empty;
         [Range(1,99,ErrorMessage ="El numero de aula debe ir entre el 1 y el 99")]
 
         [Required(ErrorMessage = "Debes ingresar la capacidad maxima del aula")]
@@ -37,6 +41,5 @@ namespace GestionDeAulas.Models
         [DefaultValue(false)]
         [DisplayName("Reserva Especial")]
         public bool IsSpecial {  get; set; }
-
     }
 }

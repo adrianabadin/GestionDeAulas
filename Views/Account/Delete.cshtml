@@ -1,4 +1,4 @@
-﻿@model User
+﻿@model GestionDeAulas.Models.ViewModels.Account.UserUpdateVM
 @*
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
@@ -7,7 +7,7 @@
 }
 <Section class="flex min-h-dvh w-full flex-col items-center">
     <h2 class="w-full bg-gray-900 p-4 text-center text-6xl font-bold text-gray-50">Eliminar Usuario</h2>
-    <form class="flex h-full w-2/3 flex-col items-center justify-center rounded-md py-4" asp-controller="Account" asp-action="Edit" method="post">
+    <form class="flex h-full w-2/3 flex-col items-center justify-center rounded-md py-4" asp-controller="Account" asp-action="Delete" method="post">
         <input type="hidden" asp-for="Id" />
         <div asp-validation-summary="ModelOnly" class="text-red-500"></div>
         <div class="flex w-2/3 flex-col self-center">
@@ -31,9 +31,9 @@
             <span asp-validation-for="EmployeeCode" class="text-red-600"></span>
         </div>
         <div class="flex w-2/3 flex-col self-center">
-            <label asp-for="Email"></label>
-            <input disabled asp-for="Email" class="border-2 mx-1 rounded-md border-gray-900 p-1" />
-            <span asp-validation-for="Email" class="text-red-600"></span>
+            <label asp-for="UserName"></label>
+            <input disabled asp-for="UserName" class="border-2 mx-1 rounded-md border-gray-900 p-1" />
+            <span asp-validation-for="UserName" class="text-red-600"></span>
         </div>
         <div class="flex w-2/3 flex-col self-center">
             <label asp-for="PhoneNumber"></label>

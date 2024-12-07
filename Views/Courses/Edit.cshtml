@@ -1,4 +1,4 @@
-﻿@model Course
+﻿@model GestionDeAulas.Models.ViewModels.Courses.CoursesCreateVM
 @*
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
@@ -7,7 +7,7 @@
 }
 <Section class="flex min-h-dvh w-full flex-col items-center">
     <h2 class="w-full bg-gray-900 p-4 text-center text-6xl font-bold text-gray-50">Editar Carrera</h2>
-    <form class="flex h-full w-2/3 flex-col items-center justify-center rounded-md py-4" asp-controller="Courses" asp-action="Create" method="POST">
+    <form class="flex h-full w-2/3 flex-col items-center justify-center rounded-md py-4" asp-controller="Courses" asp-action="Edit" method="POST">
         <input type="hidden" asp-for="Id"/>
         <div asp-validation-summary="ModelOnly" class="text-red-500"></div>
         <div class="flex w-2/3 flex-col self-center">
@@ -24,7 +24,20 @@
         <div class="flex w-2/3 flex-col self-center">
             <label asp-for="InstitutionId"></label>
             <select asp-for="InstitutionId" class="border-2 mx-1 rounded-md border-gray-900 p-1">
-                <option value="fnewfnwefef">Universidad Tecnologica Nacional</option>
+                @{
+                    if (Model.Institutions.Count > 0)
+                    {
+                        foreach (var insti in Model.Institutions)
+                        {
+                            <option value="@insti.Id">@insti.Name</option>
+                        }    
+                    }
+                    else
+                    {
+                        <option>No hay Instituciones cargadas</option>
+                    }
+                }
+          
             </select>
             <span asp-validation-for="InstitutionId" class="text-red-600"></span>
         </div>

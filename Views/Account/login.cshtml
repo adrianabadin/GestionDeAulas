@@ -1,4 +1,4 @@
-﻿@model Credentials
+﻿@model GestionDeAulas.Models.ViewModels.Account.Credentials
 @*
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
@@ -10,9 +10,9 @@
     <form class="flex h-full w-2/3 flex-col items-center justify-center rounded-md py-4" asp-controller="Account" asp-action="Login" method="POST">
         <div asp-validation-summary="ModelOnly" class="text-red-500"></div>
         <div class="flex w-2/3 flex-col self-center">
-            <label asp-for="UserNama"></label>
-            <input asp-for="UserNama" class="border-2 mx-1 rounded-md border-gray-900 p-1" />
-            <span asp-validation-for="UserNama" class="text-red-600"></span>
+            <label asp-for="UserName"></label>
+            <input asp-for="UserName" class="border-2 mx-1 rounded-md border-gray-900 p-1" />
+            <span asp-validation-for="UserName" class="text-red-600"></span>
         </div>
         <div class="flex w-2/3 flex-col self-center">
             <label asp-for="Password"></label>

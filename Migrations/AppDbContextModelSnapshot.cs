@@ -22,37 +22,11 @@ namespace GestionDeAulas.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("GestionDeAulas.Models.Address", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("DepartmentZipCode")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<int>("Number")
-                        .HasColumnType("int");
-
-                    b.Property<string>("StreetName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<Guid>("ZipCode")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("DepartmentZipCode");
-
-                    b.ToTable("Address");
-                });
-
             modelBuilder.Entity("GestionDeAulas.Models.ClassRoom", b =>
                 {
-                    b.Property<string>("RoomNumber")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)")
+                        .HasColumnName("RoomNumber");
 
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
@@ -69,25 +43,25 @@ namespace GestionDeAulas.Migrations
                     b.Property<int>("Seats")
                         .HasColumnType("int");
 
-                    b.HasKey("RoomNumber");
+                    b.HasKey("Id");
 
                     b.ToTable("Classrooms");
                 });
 
             modelBuilder.Entity("GestionDeAulas.Models.Classes", b =>
                 {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
 
-                    b.Property<Guid>("CourseId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<string>("CourseId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<bool>("IsActive")
+                    b.Property<bool?>("IsActive")
                         .HasColumnType("bit");
 
                     b.Property<string>("Name")
@@ -109,15 +83,15 @@ namespace GestionDeAulas.Migrations
 
             modelBuilder.Entity("GestionDeAulas.Models.Course", b =>
                 {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid>("InstitutionId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<string>("InstitutionId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<bool?>("IsActive")
                         .HasColumnType("bit");
@@ -139,26 +113,23 @@ namespace GestionDeAulas.Migrations
 
             modelBuilder.Entity("GestionDeAulas.Models.Departments", b =>
                 {
-                    b.Property<string>("ZipCode")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)")
+                        .HasColumnName("ZipCode");
 
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("ZipCode");
+                    b.HasKey("Id");
 
                     b.ToTable("Departments");
                 });
 
             modelBuilder.Entity("GestionDeAulas.Models.Institutions", b =>
                 {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid?>("AddressId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("ContactName")
                         .IsRequired()
@@ -171,7 +142,7 @@ namespace GestionDeAulas.Migrations
                     b.Property<string>("Email")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<bool>("IsActive")
+                    b.Property<bool?>("IsActive")
                         .HasColumnType("bit");
 
                     b.Property<string>("Name")
@@ -182,8 +153,6 @@ namespace GestionDeAulas.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("AddressId");
 
                     b.ToTable("Institutions");
                 });
@@ -198,12 +167,12 @@ namespace GestionDeAulas.Migrations
                         .HasColumnType("nvarchar(450)")
                         .HasColumnName("2");
 
-                    b.Property<string>("Hour")
-                        .HasColumnType("nvarchar(450)")
+                    b.Property<int>("Hour")
+                        .HasColumnType("int")
                         .HasColumnName("1");
 
-                    b.Property<Guid?>("ClassId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<string>("ClassId")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -212,15 +181,17 @@ namespace GestionDeAulas.Migrations
                     b.Property<DateOnly>("EndDate")
                         .HasColumnType("date");
 
-                    b.Property<string>("TeacherId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("TotalHours")
-                        .IsRequired()
+                    b.Property<string>("Id")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid?>("UserId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<bool?>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("TotalHours")
+                        .HasColumnType("int");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Date", "RoomId", "Hour");
 
@@ -228,7 +199,7 @@ namespace GestionDeAulas.Migrations
 
                     b.HasIndex("RoomId");
 
-                    b.HasIndex("TeacherId");
+                    b.HasIndex("UserId");
 
                     b.ToTable("Reserves");
                 });
@@ -250,7 +221,6 @@ namespace GestionDeAulas.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Email")
-                        .IsRequired()
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
 
@@ -265,7 +235,7 @@ namespace GestionDeAulas.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<bool>("IsActive")
+                    b.Property<bool?>("IsActive")
                         .HasColumnType("bit");
 
                     b.Property<string>("LastName")
@@ -290,7 +260,6 @@ namespace GestionDeAulas.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PhoneNumber")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("PhoneNumberConfirmed")
@@ -328,6 +297,11 @@ namespace GestionDeAulas.Migrations
                         .IsConcurrencyToken()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Discriminator")
+                        .IsRequired()
+                        .HasMaxLength(13)
+                        .HasColumnType("nvarchar(13)");
+
                     b.Property<string>("Name")
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
@@ -344,6 +318,10 @@ namespace GestionDeAulas.Migrations
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
                     b.ToTable("AspNetRoles", (string)null);
+
+                    b.HasDiscriminator().HasValue("IdentityRole");
+
+                    b.UseTphMappingStrategy();
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -452,15 +430,11 @@ namespace GestionDeAulas.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("GestionDeAulas.Models.Address", b =>
+            modelBuilder.Entity("GestionDeAulas.Models.Roles", b =>
                 {
-                    b.HasOne("GestionDeAulas.Models.Departments", "Department")
-                        .WithMany()
-                        .HasForeignKey("DepartmentZipCode")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.HasBaseType("Microsoft.AspNetCore.Identity.IdentityRole");
 
-                    b.Navigation("Department");
+                    b.HasDiscriminator().HasValue("Roles");
                 });
 
             modelBuilder.Entity("GestionDeAulas.Models.Classes", b =>
@@ -493,15 +467,6 @@ namespace GestionDeAulas.Migrations
                     b.Navigation("Institution");
                 });
 
-            modelBuilder.Entity("GestionDeAulas.Models.Institutions", b =>
-                {
-                    b.HasOne("GestionDeAulas.Models.Address", "Address")
-                        .WithMany()
-                        .HasForeignKey("AddressId");
-
-                    b.Navigation("Address");
-                });
-
             modelBuilder.Entity("GestionDeAulas.Models.Reserve", b =>
                 {
                     b.HasOne("GestionDeAulas.Models.Classes", "Class")
@@ -509,14 +474,14 @@ namespace GestionDeAulas.Migrations
                         .HasForeignKey("ClassId");
 
                     b.HasOne("GestionDeAulas.Models.ClassRoom", "Room")
-                        .WithMany()
+                        .WithMany("Reserves")
                         .HasForeignKey("RoomId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("GestionDeAulas.Models.User", "Teacher")
                         .WithMany()
-                        .HasForeignKey("TeacherId");
+                        .HasForeignKey("UserId");
 
                     b.Navigation("Class");
 
@@ -554,6 +519,12 @@ namespace GestionDeAulas.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<string>", b =>
                 {
+                    b.HasOne("GestionDeAulas.Models.Roles", null)
+                        .WithMany("UserRoles")
+                        .HasForeignKey("RoleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
                         .WithMany()
                         .HasForeignKey("RoleId")
@@ -561,7 +532,7 @@ namespace GestionDeAulas.Migrations
                         .IsRequired();
 
                     b.HasOne("GestionDeAulas.Models.User", null)
-                        .WithMany()
+                        .WithMany("MyUserRoles")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -574,6 +545,21 @@ namespace GestionDeAulas.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("GestionDeAulas.Models.ClassRoom", b =>
+                {
+                    b.Navigation("Reserves");
+                });
+
+            modelBuilder.Entity("GestionDeAulas.Models.User", b =>
+                {
+                    b.Navigation("MyUserRoles");
+                });
+
+            modelBuilder.Entity("GestionDeAulas.Models.Roles", b =>
+                {
+                    b.Navigation("UserRoles");
                 });
 #pragma warning restore 612, 618
         }

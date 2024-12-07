@@ -1,7 +1,6 @@
-﻿@model Classes
-@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model GestionDeAulas.Models.ViewModels.Classes.ClassessCreateVM
+
+
 @{
     ViewData["Title"] = "Crear Materia";
 }
@@ -19,14 +18,38 @@
         <div class="flex w-2/3 flex-col self-center">
             <label asp-for="CourseId"></label>
             <select asp-for="CourseId" class="border-2 mx-1 rounded-md border-gray-900 p-1">
-                <option value="fnewfnwefef">Tecnicatura Superior en Programacion</option>
+                @{
+                    if(Model.CoursesList.Count() > 0)
+                    {
+                        foreach (var item in Model.CoursesList)
+                        {
+                            <option value="@item.Id">@item.Name</option>
+                        }
+                    }
+                    else
+                    {
+                        <option>No hay Carreras Cargadas</option>
+                    }
+                }
             </select>
-            <span asp-validation-for="CourseId" class="text-red-600"></span>
+            <span asp-validation-for="Course" class="text-red-600"></span>
         </div>
         <div class="flex w-2/3 flex-col self-center">
             <label asp-for="UserId"></label>
             <select asp-for="UserId" class="border-2 mx-1 rounded-md border-gray-900 p-1">
-                <option value="fnewfnwefef">Yamila Artigas</option>
+                @{
+                    if(Model.TeachersList.Count() > 0)
+                    {
+                        foreach (var teacher in Model.TeachersList)
+                        {
+                            <option value="@teacher.Id">@teacher.Name</option>
+                        }
+                    }else
+                    {
+                        <option >No hay docentes cargados...</option>
+                    }
+                }
+                
             </select>
             <span asp-validation-for="UserId" class="text-red-600"></span>
         </div>

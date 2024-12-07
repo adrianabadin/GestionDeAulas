@@ -14,5 +14,23 @@ namespace GestionDeAulas.Services
             var response = await _context.Users.ToListAsync();
             return response;
         }
+        public async Task<bool> Delete(User user) {
+            var data = await _context.Users.FindAsync(user.Id);
+            if (data == null) return false;
+            data.IsActive = false;
+            var response = _context.SaveChangesAsync();
+            if (response == null) return false;
+            return true;
+
+        }
+        public async Task<bool> Activate (User user)
+        {
+            var data = await _context.Users.FindAsync(user.Id);
+            if (data == null) return false;
+            data.IsActive = true;
+            var response = _context.SaveChangesAsync();
+            if (response == null) return false;
+            return true;
+        }
     }
 }

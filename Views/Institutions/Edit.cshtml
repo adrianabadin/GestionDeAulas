@@ -7,7 +7,7 @@
 }
 <Section class="flex min-h-dvh w-full flex-col items-center">
     <h2 class="w-full bg-gray-900 p-4 text-center text-6xl font-bold text-gray-50">Editar Institucion</h2>
-    <form class="flex h-full w-2/3 flex-col items-center justify-center rounded-md py-4" asp-controller="Account" asp-action="Edit" method="POST">
+    <form class="flex h-full w-2/3 flex-col items-center justify-center rounded-md py-4" asp-controller="Institutions" asp-action="Edit" method="POST">
         <input type="hidden" asp-for="Id"/>
         <div asp-validation-summary="ModelOnly" class="text-red-500"></div>
         <div class="flex w-2/3 flex-col self-center">
