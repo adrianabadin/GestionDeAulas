@@ -5,8 +5,8 @@ namespace GestionDeAulas.Repository.IRepository
 {
     public interface IReserveRepository:IRepository<Reserve>
     {
-        public Task Update(Reserve entity);
-        public Task<ICollection<ClassRoom>> Seek(ReserveCreateVM entity);
+        public Task Update(Reserve entity,string id);
+        public Task<ICollection<ClassRoom>> Seek(ReserveCreateVM entity,bool omitEntity);
         public  Task<ICollection<User>> TeachersList(string roleId);
     }
 }

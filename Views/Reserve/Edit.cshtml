@@ -1,4 +1,4 @@
-﻿@model ReserveSeek
+﻿@model GestionDeAulas.Models.ViewModels.Reserves.ReserveUpdateVM
 @*
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
@@ -6,12 +6,14 @@
     ViewData["Title"] = "Editar Reserva";
 }
 <Section class="flex min-h-dvh w-full flex-col items-center">
-    <h2 class="w-full bg-gray-900 p-4 text-center text-6xl font-bold text-gray-50">Editar Reserva</h2>
-    <form class="flex h-full w-2/3 flex-col items-center justify-center rounded-md py-4" asp-controller="Reserve" asp-action="Search" method="POST">
+    
+    <h2 class="w-full bg-gray-900 p-4 text-center text-6xl font-bold text-gray-50">Buscar Horarios Disponibles</h2>
+    <form class="flex h-full w-2/3 flex-col items-center justify-center rounded-md py-4"  asp-action="SeekEdit" method="POST">
         <div asp-validation-summary="ModelOnly" class="text-red-500"></div>
+        <input type="hidden" asp-for="MainId"  />
         <div class="flex w-2/3 flex-col self-center">
             <label asp-for="Date"></label>
-            <input asp-for="Date" type="date" class="border-2 mx-1 rounded-md border-gray-900 p-1" />
+            <input asp-for="Date" type="date" value="@Model.Date.ToString("yyyy-MM-dd")" class="border-2 mx-1 rounded-md border-gray-900 p-1" />
             <span asp-validation-for="Date" class="text-red-600"></span>
         </div>
         <div class="flex w-2/3 flex-col self-center">
@@ -39,7 +41,7 @@
             <button type="submit" class="mt-4 w-48 rounded-md border border-transparent bg-gradient-to-tr from-blue-800 to-blue-700 px-4 py-2 text-center text-sm text-white shadow-md transition-all hover:shadow-lg hover:bg-slate-700 focus:bg-slate-700 focus:shadow-none active:bg-slate-700 active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none">
                 <i class="fa fa-search" aria-hidden="true"></i>  Ver Disponibilidad
             </button>
-            <a asp-action="Index" asp-controller="ClassRoom" class="mt-4 w-48 rounded-md border border-transparent bg-gradient-to-tr from-green-800 to-green-700 px-4 py-2 text-center text-sm text-white shadow-md transition-all hover:shadow-lg hover:bg-slate-700 focus:bg-slate-700 focus:shadow-none active:bg-slate-700 active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none">
+            <a asp-action="Index" asp-controller="Reserve" class="mt-4 w-48 rounded-md border border-transparent bg-gradient-to-tr from-green-800 to-green-700 px-4 py-2 text-center text-sm text-white shadow-md transition-all hover:shadow-lg hover:bg-slate-700 focus:bg-slate-700 focus:shadow-none active:bg-slate-700 active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none">
                 Volver
             </a>
 
@@ -47,76 +49,123 @@
 
 
     </form>
-    <h2 class="w-full bg-gray-900 p-4 text-center text-6xl font-bold text-gray-50">Detalles de Reserva</h2>
-    <form asp-controller="Reserve" asp-action="Create" class="flex h-full w-2/3 flex-col items-center justify-center rounded-md py-4">
-        <table class="w-full min-w-max table-auto text-left">
-            <thead>
-                <tr>
-                    <th class="border-b border-slate-500 bg-slate-800 p-4 transition-colors hover:bg-slate-900">
-                        <p class="flex items-center justify-between gap-2 text-sm font-normal leading-none text-slate-50">
-                            Numero de Aula
-                        </p>
-                    </th>
+    <h2 class="w-full bg-gray-900 p-4 text-center text-6xl font-bold text-gray-50">Crear Reserva</h2>
+    <script>
+        $(document).ready(function () {
+            $('#availableRooms').DataTable();
+        });
+    </script>
 
-                    <th class="border-b border-slate-500 bg-slate-800 p-4 transition-colors hover:bg-slate-900">
-                        <p class="flex items-center justify-between gap-2 text-sm font-normal leading-none text-slate-50">
-                            Capacidad
+    @{
+        if (Model != null && Model.Rooms != null && Model.Rooms.Count() > 0 && Model.ClassesList != null && Model.UsersList != null && Model.ClassesList.Count() > 0 && Model.UsersList.Count() > 0)
+        {
+            <table id="availableRooms" class="display w-full min-w-max table-auto text-left">
+                <thead>
+                    <tr>
+                        <th class="border-b border-slate-500 bg-slate-800 p-4 transition-colors hover:bg-slate-900">
+                            <p class="flex items-center justify-between gap-2 text-sm font-normal leading-none text-slate-50">
+                                Numero de Aula
+                            </p>
+                        </th>
 
-                        </p>
-                    </th>
-                    <th class="border-b border-slate-500 bg-slate-800 p-4 transition-colors hover:bg-slate-900">
-                        <p class="flex items-center justify-between gap-2 text-sm font-normal leading-none text-slate-50">
-                            Responsable
-                        </p>
-                    </th>
-                    <th class="border-b border-slate-500 bg-slate-800 p-4 transition-colors hover:bg-slate-900">
-                        <p class="flex items-center justify-between gap-2 text-sm font-normal leading-none text-slate-50">
-                            Materia
-                        </p>
-                    </th>
+                        <th class="border-b border-slate-500 bg-slate-800 p-4 transition-colors hover:bg-slate-900">
+                            <p class="flex items-center justify-between gap-2 text-sm font-normal leading-none text-slate-50">
+                                Capacidad
 
-                    <th class="border-b border-slate-500 bg-slate-800 p-4 transition-colors hover:bg-slate-900">
-                        <p class="flex items-center justify-between gap-2 text-sm font-normal leading-none text-slate-50">
-                            Acciones
-                        </p>
-                    </th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr class="hover:bg-slate-50">
-                    <form asp-controller="Reserve" asp-action="Create">
-                    <td class="border-b border-slate-200 p-4">
-                        <p class="block text-sm text-slate-800">
-                            7
-                        </p>
-                    </td>
-                    <td class="border-b border-slate-200 p-4">
-                        <p class="block text-sm text-slate-800">
-                            32
-                        </p>
-                    </td>
-                    <td class="border-b border-slate-200 p-4">
-                        <p class="block text-sm text-slate-800">
-                            Ariel Bollini
-                        </p>
-                    </td>
-                    <td class="border-b border-slate-200 p-4">
-                        <p class="block text-sm font-bold text-green-800">
-                            Laboratorio 3
-                        </p>
-                    </td>
+                            </p>
+                        </th>
+                        <th class="border-b border-slate-500 bg-slate-800 p-4 transition-colors hover:bg-slate-900">
+                            <p class="flex items-center justify-between gap-2 text-sm font-normal leading-none text-slate-50">
+                                Responsable
+                            </p>
+                        </th>
+                        <th class="border-b border-slate-500 bg-slate-800 p-4 transition-colors hover:bg-slate-900">
+                            <p class="flex items-center justify-between gap-2 text-sm font-normal leading-none text-slate-50">
+                                Materia
+                            </p>
+                        </th>
 
-                    <td class="flex justify-end border-b border-slate-200 p-4">
-                        <button type="submit" class="ml-2 rounded-md border border-transparent bg-blue-600 px-4 py-2 text-center text-sm text-white shadow-md transition-all hover:shadow-lg hover:bg-blue-700 focus:bg-blue-700 focus:shadow-none active:bg-blue-700 active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none">
-                            <i class="fa fa-plus" aria-hidden="true"></i>
-                            Reservar
-                        </button>
-                    </td>
-    </form>
-    </tr>
-    </tbody>
-    </table>
+                        <th class="border-b border-slate-500 bg-slate-800 p-4 transition-colors hover:bg-slate-900">
+                            <p class="flex items-center justify-between gap-2 text-sm font-normal leading-none text-slate-50">
+                                Acciones
+                            </p>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                @{
+                    int counter = 0;
+                    if (Model != null && Model.Rooms != null)
+                    {
+                        foreach (var room in Model.Rooms)
+                        {
+                                            
+                                            
+                                <tr class="hover:bg-slate-50">
+                                <form asp-controller="Reserve" asp-action="Editar" method="post">
+                                                <input type="hidden" asp-for="Date" />
+                                        <input type="hidden" asp-for="EndDate"  />
+                                        <input type="hidden" asp-for="Students"  />
+                                        <input type="hidden" asp-for="Hour"  />
+                                        <input type="hidden" asp-for="TotalHours"  />
+                                        <input type="hidden" asp-for="MainId" />
+                                                <input type="hidden" name="RoomId" value="@room.Id"  />
+                                            <td class="border-b border-slate-200 p-4">
+                                            <p class="block text-sm text-slate-800">
+                                                @room.Id
+                                            </p>
+                                        </td>
+                                        <td class="border-b border-slate-200 p-4">
+                                            <p class="block text-sm text-slate-800">
+                                                @room.Seats
+                                            </p>
+                                        </td>
+                                        <td class="border-b border-slate-200 p-4">
+                                                            <select asp-for="UserId" class="border-2 mx-1 rounded-md border-gray-900 p-1">
+                                                @{
+                                                    foreach (var teach in Model.UsersList)
+                                                    {
+                                                                                    <option id="@teach.Id" value="@teach.Id">@(teach.Name)</option>
 
+                                                    }
+                                                }
+                                            </select>
+                                        </td>
+                                        <td class="border-b border-slate-200 p-4">
+                                                            <select asp-for="ClassId" class="border-2 mx-1 rounded-md border-gray-900 p-1">
+                                                @{
+                                                    foreach (var classData in Model.ClassesList)
+                                                    {
+                                                                                <option value="@classData.Id" id="@classData.Id">@(classData.Name)</option>
 
-    </form>
+                                                    }
+                                                }
+                                            </select>
+                                        </td>
+
+                                        <td class="flex justify-end border-b border-slate-200 p-4">
+                                        <button type="submit" class="ml-2 rounded-md border border-transparent @(room.Id ==Model.RoomId ? "bg-gradient-to-tr from-green-800 to-green-700" :"bg-blue-600") px-4 py-2 text-center text-sm text-white shadow-md transition-all hover:shadow-lg hover:bg-blue-700 focus:bg-blue-700 focus:shadow-none active:bg-blue-700 active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none">
+                                                <i class="fa fa-plus" aria-hidden="true"></i>
+                                                Reservar
+                                            </button>
+                                        </td>
+                                    </form>
+                                            </tr>
+                                                    
+                                counter++;
+                            }
+                    }
+                    
+                }
+                </tbody>
+                </table>
+
+        }
+        else
+        {
+            <span class="w-full text-center font-bold text-red-600">No hay Salones Disponibles</span>
+        }
+
+    }
+
 </Section>

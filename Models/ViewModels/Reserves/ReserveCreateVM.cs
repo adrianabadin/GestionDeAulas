@@ -9,11 +9,11 @@ namespace GestionDeAulas.Models.ViewModels.Reserves
     {
         public IEnumerable<GestionDeAulas.Models.Classes>? ClassesList { get; set; }
         public IEnumerable<GestionDeAulas.Models.DTOs.NamedEntity>? UsersList { get; set; }
-        public IEnumerable<GestionDeAulas.Models.ClassRoom> Rooms { get; set; } = new List<ClassRoom>();
+        public ICollection<GestionDeAulas.Models.ClassRoom> Rooms { get; set; } = new List<ClassRoom>();
         public GestionDeAulas.Models.Classes? Class { get; set; }
         [Range(0,100)]
         public int Students{ get; set; }
-        public string? Id { get; set; } = Guid.NewGuid().ToString();
+       virtual public string? Id { get; set; } = Guid.NewGuid().ToString();
      
             [Required(ErrorMessage = "Ingresa una fecha para inicio de reserva")]
             [DisplayName("Fecha de Reserva")]

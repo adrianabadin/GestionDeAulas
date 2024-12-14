@@ -6,12 +6,12 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace GestionDeAulas.Models
 {
-    [PrimaryKey(nameof(Date),nameof(RoomId),nameof(Hour))]
+    
     public class Reserve :IActivable
     {
-        
-        public string? Id { get; set; } = Guid.NewGuid().ToString();
-        [Column("0")]
+        [Key]
+         public string? Id { get; set; } = Guid.NewGuid().ToString();
+    
         [Required(ErrorMessage = "Ingresa una fecha para inicio de reserva")]
         [DisplayName("Fecha de Reserva")]
         public DateOnly Date {  get; set; }
@@ -23,12 +23,12 @@ namespace GestionDeAulas.Models
         [ForeignKey("User")]
         public string? UserId {  get; set; }
         public User? Teacher { get; set; } 
-        [Column("1")]
+    
         [Required(ErrorMessage = "Debes ingresar una hora para la reserva")]
         [DisplayName("Hora de la reserva")]
         public int  Hour { get; set; } 
         
-        [Column("2")]
+    
         [ForeignKey("ClassRoom")]
         [DisplayName("Numero de Salon")]
         [Required(ErrorMessage = "Debes ingresar un numero de Aula")]

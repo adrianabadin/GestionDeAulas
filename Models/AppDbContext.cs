@@ -25,6 +25,7 @@ namespace GestionDeAulas.Models
             builder.Entity<User>().HasMany<IdentityUserRole<string>>(u => u.MyUserRoles).WithOne().HasForeignKey(ur => ur.UserId).IsRequired();
             builder.Entity<Roles>().HasMany<IdentityUserRole<string>>(u => u.UserRoles).WithOne().HasForeignKey(ur => ur.RoleId).IsRequired();
             builder.Entity<ClassRoom>().HasAlternateKey(e=>e.Id);
+            builder.Entity<Reserve>().HasIndex(e => new { e.Date , e.RoomId , e.Hour }).IsUnique();
         }
 
     }
