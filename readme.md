@@ -32,10 +32,7 @@ Update-Database
 Terminado este proceso ya se puede utilizar el proyecto desde Visual Studio 
 
 
-## Integrantes 
-* Lucas Centurion
-* Enzo Di Candia
-* Adrian Abadin 
+
 
 ## Relevamiento 
 El *Centro Universitario Regional Saladillo* (CURS) es una institución educativa de carácter municipal que ofrece una amplia oferta académica mediante alianzas con instituciones universitarias como la UBA, la UNLP, la UTN y la UNQ. Gracias a estas colaboraciones, los estudiantes pueden cursar carreras como la Tecnicatura Universitaria en Programación, la Licenciatura en Administración, Contador Público y Asistente Terapéutico, entre otras. Sin embargo, esta oferta no es constante todos los años; algunas carreras, como Contador Público, son permanentes, mientras que otras, como la Tecnicatura en Programación, se ofrecen solo en cohortes específicas. El CURS opera de lunes a sábado, de 8:00 a 22:00 hs, y su variada oferta académica requiere una organización eficaz, en especial para la gestión de reservas de aulas.
