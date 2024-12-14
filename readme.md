@@ -1,6 +1,37 @@
 # Proyecto CURS Sistema de gestion de aulas
 ## Trabajo de practicas profesionales Tecnicatura superior en programacion UTN Pacheco
 
+## Instalacion
+Para poder utilizar el proyecto se necesita configurar el string connection de la base de datos segun este formato.
+```js
+{
+  "ConnectionStrings": {
+    
+    "default": "Server=URLSERVIDOR,PUERTO;Database=NOMBRE BASE DE DATOS;User Id=SA;Password=CLAVE!;Encrypt=false;TrustServerCertificate=true;",
+  },
+  "Logging": {
+    "LogLevel": {
+      "Default": "Information",
+      "Microsoft.AspNetCore": "Warning"
+    }
+  },
+  "AllowedHosts": "*"
+}
+```
+
+```bash
+dotnet restore
+```
+
+Desde la consola del administrador de paquetes debes ejecutar las migraciones para que se genere la base de datos 
+
+```bash
+Update-Database
+```
+
+Terminado este proceso ya se puede utilizar el proyecto desde Visual Studio 
+
+
 ## Integrantes 
 * Lucas Centurion
 * Enzo Di Candia
