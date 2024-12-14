@@ -53,6 +53,15 @@ Es por esto que una solucion descentralizada permitira la gestion del sistema de
 * ORM Entity Framework
 * Authenticacion y autorizacion Identity Core
 
+## Rutas
+* /Institutions
+* /ClassRoom
+* /Courses
+* /Classes
+* /Account/Login
+* /Account/Register
+* /Account/Edit
+* /Account
 ## Arquitectura
 El diseño de la aplicacion sera utilizando arquitectur MVC (Modelo,Vista,Controlador) lo que permite una solucion sencilla, monorepo y con codigo legible y escalable para poder ampliar o modificar en el largo plazo
 Se aplicaran los patrones de diseño actualmente reconocidos en las arquitecturas clean para .NET que es la inyeccion de dependencias mediante un patron de servicios y repositorios.
